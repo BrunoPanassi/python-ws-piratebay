@@ -8,7 +8,7 @@ To start it must be a folder with the *geckodriver.exe* to run the driver of the
 You can download the driver in this link:
 - https://github.com/mozilla/geckodriver/releases
 
-After you download the *.exe*, change the directory in line 7 on the *executable_path* parameter of the *ws_piratebay.py* of your *geckodriver.exe* folder, like this:
+After you download the *.exe*, change the directory in line 14 on the *executable_path* parameter of the *ws_piratebay.py* of your *geckodriver.exe* folder, like this:
 ```python
 firefox = webdriver.Firefox(executable_path = 'F:\Bruno\Projects\Python\web_scrapping\python_ws_piratebay\geckodriver\geckodriver.exe')
 ```
