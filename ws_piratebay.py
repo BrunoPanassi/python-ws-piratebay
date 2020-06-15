@@ -4,7 +4,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
-firefox = webdriver.Firefox(executable_path = 'F:\Bruno\Projects\Python\web_scrapping\python_ws_piratebay\geckodriver\geckodriver.exe')
+movie = None
+while movie is None:
+    try:
+        movie = str(input('Type a movie: '))
+    except:
+        print('Type a movie name!')
+
+firefox = webdriver.Firefox(executable_path = 'F:\Bruno\Projects\Python\web_scrapping_dio\python_ws_piratebay\geckodriver\geckodriver.exe')
 firefox.get('https://thepiratebay.org/index.html')
 
 try:
@@ -15,13 +22,6 @@ except:
     print('Could not find tag - input')
 
 if searchMovie is not None:
-    movie = None
-    while movie is None:
-        try:
-            movie = str(input('Type a movie: '))
-        except:
-            print('Type a movie name!')
-    
     searchMovie.send_keys(movie)
     searchMovie.send_keys(Keys.ENTER)
 
@@ -37,12 +37,21 @@ if searchMovie is not None:
 
         for quality in qualities:
             if (quality in movie_title) and (movie_title not in movies_in_HD):
-                movies_in_HD.append(movie_title)
-
-                print(movie_title)
-                print(tag_a.get_attribute('href'))
-                print('')
-        
+                if len(movies_in_HD) <= 4:
+                    movies_in_HD.append(
+                        {
+                            'title':movie_title,
+                            'link':tag_a.get_attribute('href')
+                        }
+                    )
+                else:
+                    break
+    
+    for movie in movies_in_HD:
+        for index, value in movie.items():
+            print(index)
+            print(value)
+            print('')
 
 
     
