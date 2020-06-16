@@ -26,26 +26,35 @@ if searchMovie is not None:
     searchMovie.send_keys(Keys.ENTER)
 
     firefox.implicitly_wait(20)
-    item_title = firefox.find_elements_by_css_selector('span.item-title')
+    itemTitle = firefox.find_elements_by_css_selector('span.item-title')
 
     qualities = ['720p', '1080p', '2160p']
+    notQualities = ['HD-TS', 'HDCAM']
     movies_in_HD = []
     
-    for item in item_title:
+    for item in itemTitle:
         tag_a = item.find_element_by_tag_name('a')
         movie_title = tag_a.text
+        haveQuality = False
 
         for quality in qualities:
-            if (quality in movie_title) and (movie_title not in movies_in_HD):
-                if len(movies_in_HD) <= 4:
-                    movies_in_HD.append(
-                        {
-                            'title':movie_title,
-                            'link':tag_a.get_attribute('href')
-                        }
-                    )
-                else:
-                    break
+            if (quality in movie_title):
+                haveQuality = True
+            
+        for notQuality in notQualities:
+            if (notQuality in movie_title):
+                haveQuality = False
+
+        if haveQuality:
+            if len(movies_in_HD) <= 4:
+                movies_in_HD.append(
+                    {
+                        'title':movie_title,
+                        'link':tag_a.get_attribute('href')
+                    }
+                )
+            else:
+                break
     
     for movie in movies_in_HD:
         for index, value in movie.items():
