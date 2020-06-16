@@ -43,7 +43,7 @@ if searchMovie is not None:
             
         for notQuality in notQualities:
             if (notQuality in movie_title):
-                haveQuality = False
+                haveQuality = False 
 
         if haveQuality:
             if len(movies_in_HD) <= 4:
