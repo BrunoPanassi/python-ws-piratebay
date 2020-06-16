@@ -1,4 +1,4 @@
-# WebScrapping on ThePirateBay to find HD movies
+# WebScraping on ThePirateBay to find HD movies
 
 #### This project was made to find if there is a movie that could be in HD based on your data input.
 
