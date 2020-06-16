@@ -39,7 +39,7 @@ python .\ws_piratebay.py
  ![list_of_links](screenshots/list_of_links.jpg)
 
  ## What you mean for 'movies in HD'?
- Its compared some keywords like '720p', '1080p' or even 'BluRay' to the titles of the links.
+ Its compared some keywords like '720p', '1080p' or even '2160p' to the titles of the links.
  <br>
  Later on will be added some new keywords that could be mean a movie in HD.
 

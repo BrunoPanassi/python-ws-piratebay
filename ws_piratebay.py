@@ -28,7 +28,7 @@ if searchMovie is not None:
     firefox.implicitly_wait(20)
     item_title = firefox.find_elements_by_css_selector('span.item-title')
 
-    qualities = ['720p', '1080p', '2160p', 'BluRay']
+    qualities = ['720p', '1080p', '2160p']
     movies_in_HD = []
     
     for item in item_title:
