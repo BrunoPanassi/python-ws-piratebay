@@ -8,7 +8,7 @@ To start it must be a folder with the *geckodriver.exe* to run the driver of the
 You can download the driver in this link:
 - https://github.com/mozilla/geckodriver/releases
 
-After you download the *.exe*, change the directory in line 14 on the *executable_path* parameter of the *ws_piratebay.py* of your *geckodriver.exe* folder, like this:
+After you download the *.exe*, change the directory in line 17 on the *executable_path* parameter of the *ws_piratebay.py* of your *geckodriver.exe* folder, like this:
 ```python
 firefox = webdriver.Firefox(executable_path = 'F:\Bruno\Projects\Python\web_scrapping\python_ws_piratebay\geckodriver\geckodriver.exe')
 ```
@@ -34,12 +34,13 @@ python .\ws_piratebay.py
  <br>
  ![the_piratebay](screenshots/thepiratebay.jpg)
 
- And then a list of links will show up in the output:
+ And then a list of links will show up in a JSON file:
  <br>
  ![list_of_links](screenshots/list_of_links.jpg)
 
  ## What you mean for 'movies in HD'?
- Its compared some keywords like '720p', '1080p' or even '2160p' to the titles of the links.
+ Its compared some keywords like '720p', '1080p' or even '2160p' to the titles of the links,
+ and avoiding titles with 'HD-TS' or 'HDCAM'.
  <br>
  Later on will be added some new keywords that could be mean a movie in HD.
 
