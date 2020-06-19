@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+import json
 
 movie = None
 while movie is None:
@@ -11,7 +13,8 @@ while movie is None:
     except:
         print('Type a movie name!')
 
-firefox = webdriver.Firefox(executable_path = 'F:\Bruno\Projects\Python\web_scrapping_dio\python_ws_piratebay\geckodriver\geckodriver.exe')
+binary = FirefoxBinary(r'C:\\Program Files\\Firefox Developer Edition\\firefox.exe')
+firefox = webdriver.Firefox(firefox_binary=binary, executable_path = r'F:\\Bruno\\Projects\\Python\\web_scrapping_dio\\python_ws_piratebay\\geckodriver\\geckodriver.exe')
 firefox.get('https://thepiratebay.org/index.html')
 
 try:
@@ -29,7 +32,7 @@ if searchMovie is not None:
     itemTitle = firefox.find_elements_by_css_selector('span.item-title')
 
     qualities = ['720p', '1080p', '2160p']
-    notQualities = ['HD-TS', 'HDCAM']
+    notQualities = ['HD-TS', 'HDTS', 'HDCAM']
     movies_in_HD = []
     
     for item in itemTitle:
@@ -45,22 +48,17 @@ if searchMovie is not None:
             if (notQuality in movie_title):
                 haveQuality = False 
 
-        if haveQuality:
-            if len(movies_in_HD) <= 4:
+        if haveQuality and len(movies_in_HD) <= 4:
                 movies_in_HD.append(
                     {
                         'title':movie_title,
                         'link':tag_a.get_attribute('href')
                     }
                 )
-            else:
-                break
+
+    with open('piratebay_links.json', 'w', encoding='utf-8') as json_file:
+        json.dump(movies_in_HD, json_file, ensure_ascii=False)
     
-    for movie in movies_in_HD:
-        for index, value in movie.items():
-            print(index)
-            print(value)
-            print('')
 
 
     
